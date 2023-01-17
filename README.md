@@ -5,6 +5,7 @@ A [finishline.com](https:www.finishline.com) clone for MasaiSchool's CW project
 Each product contents:
 
 * id: "ID of the product"
+* img: "Image of the Product"
 * name: "Name of the product"
 * brand: Nike|Jordan|Adidas|New Balance|On|Converse|Under Armour|Fila
 * rating: {avg: "Rating out of 5", count: "No of people who have rated"}
