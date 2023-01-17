@@ -6,6 +6,7 @@ Each product contents:
 
 * id: "ID of the product"
 * name: "Name of the product"
+* brand: Nike|Jordan|Adidas|New Balance|On|Converse|Under Armour|Fila
 * rating: {avg: "Rating out of 5", count: "No of people who have rated"}
 * price: "price of the product"
 * trending: "Trending status - true or false value"
