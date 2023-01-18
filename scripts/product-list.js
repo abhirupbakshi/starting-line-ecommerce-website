@@ -157,6 +157,7 @@ function create_pages(list)
     })
 
     current_page = item_index[0];
+    document.querySelector("#total-pages").innerText = item_index.length;
 }
 
 function display_products(list)
@@ -181,6 +182,7 @@ function display_products(list)
         {
             let parent = document.createElement("div");
             document.querySelector("#product-list").append(parent);
+            parent.setAttribute("class", "product-card");
 
             let child = document.createElement("p");
             parent.append(child);
@@ -210,7 +212,7 @@ function display_products(list)
             child = document.createElement("p");
             parent.append(child);
             child.setAttribute("class", "product-price");
-            child.innerText = _list[i].price;
+            child.innerText = "$" + _list[i].price;
 
             child = document.createElement("div");
             parent.append(child);
@@ -230,6 +232,8 @@ function display_products(list)
             if(_list[i].trending) child.innerText = "Trending";
         }
     }
+
+    document.querySelector("#list-count").innerHTML = ` (${_list.length})`
 }
 
 function get_selected_filters_list()
@@ -577,12 +581,12 @@ get_base_url()
 {
     get_data(url.products)
     .then(list =>
-    {
+    { 
         display_filters(get_filters(list));
 
-        display_products(list);
-
         update_title_list_info();
+
+        display_products(list);
 
         document.querySelector("#filters").addEventListener("change", event =>
         {

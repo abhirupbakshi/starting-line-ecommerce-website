@@ -4,12 +4,9 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles/product-list.css">
+        <link rel="stylesheet" href="./styles/common.css">
         <title></title>
-        <style>
-            img {
-                width: 200px;
-            }
-        </style>
     </head>
     <body>
         <div id="main">
@@ -45,16 +42,18 @@
             </div>
             <div id="products">
                 <div>
-                    <h1 id="list-name"></h1>
+                    <h1 id="list-info"><span id="list-name"></span><span id="list-count"></span></h1>
                     <select name="sort" id="sort">
-                        <option value="">Relevance</option>
-                        <option value="price-asc">Price: Low to High</option>
-                        <option value="price-des">Price: High to Low</option>
-                        <option value="ratings-asc">Ratings: Low to High</option>
-                        <option value="ratings-des">Ratings: High to Low</option>
+                        <option value="">Sort by: Relevance</option>
+                        <option value="price-asc">Sort by Price: Low to High</option>
+                        <option value="price-des">Sort by Price: High to Low</option>
+                        <option value="ratings-asc">Sort by Ratings: Low to High</option>
+                        <option value="ratings-des">Sort by Ratings: High to Low</option>
                     </select>
                     <div id="product-list"></div>
-                    <select id="pages"></select>
+                    <div id="pagination">
+                        <select id="pages"></select><span>of</span><span id="total-pages"></span>
+                    </div>
                 </div>
             </div>
         </div>

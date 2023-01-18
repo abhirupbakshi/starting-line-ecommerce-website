@@ -1,0 +1,146 @@
+*{
+    /* border: 1px solid black; */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+#main {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    margin-bottom: 5em;
+}
+
+#filters {
+    height: fit-content;
+    margin-right: 3%;
+    padding: 2em;
+    font-size: 1.1rem;    
+    color: #666666;
+    border-right: 1px solid #666666 ;
+}
+
+#filters > div, #type > div, #size > div {
+    margin-bottom: 3.5em;
+}
+
+#filters > div:last-child {
+    margin-bottom: 0em;
+}
+
+#type > div:last-child {
+    margin-bottom: 0em;
+}
+
+#size > div:last-child {
+    margin-bottom: 0em;
+}
+
+#filters > div > h2, #type > div > h2, #size > div > h2 {
+    font-size: 1.7rem;
+    margin-bottom: 0.4em;
+    color: #333333;
+}
+
+#filters input {
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+#products {
+    width: 100%;
+}
+
+#list-info 
+{
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: -0.035em;
+    margin-bottom: 0.5em;
+}
+
+#sort {
+    display: block;
+    margin-left: auto;
+    padding: 0.5em;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-bottom: 1.1em;
+}
+
+#product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 245px);
+    row-gap: 1.5em;
+    justify-content: space-between;
+    color: #4e4e4e;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.5em;
+}
+
+.product-card:hover {
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    background-color: white;
+    box-shadow: 0px 0px 5px 1px rgb(214, 213, 213);
+    cursor: pointer;
+}
+
+.product-img {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+#product-list hr {
+    margin-bottom: 0.25em;
+}
+
+.product-name {
+    font-size: 1rem;
+    margin-bottom: auto;
+    margin-left: 0.5em;
+}
+
+.product-brand {
+    font-size: 1rem;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+}
+
+.product-price {
+    font-size: 0.9rem;
+    margin-left: 0.5em;
+}
+
+.product-rating-div {
+    height: 1rem;
+    margin-left: 0.5em;
+}
+
+.product-trend {
+    height: 1rem;
+    font-weight: 600;
+    margin-left: 0.5em;
+    color: #00a8f0;
+}
+
+#pagination {
+    width: fit-content;
+    margin-left: auto;
+    margin-top: 4em;
+    font-size: 1rem;
+}
+
+#pagination select {
+    padding: 0.5em 2em;
+}
+
+#pagination > span
+{
+    padding: 0.5em 1em;
+}
