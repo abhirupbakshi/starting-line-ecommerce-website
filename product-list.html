@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <style>
+            img {
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main">
+            <div id="filters">
+                <div>
+                    <h2>Brands</h2>
+                    <div id="brands"></div>
+                </div>
+                <div>
+                    <h2>Genders</h2>
+                    <div id="gender"></div>
+                </div>
+                <div id="type">
+                    <div>
+                        <h2>Product Type</h2>
+                        <div id="main-type"></div>
+                    </div>
+                    <div>
+                        <h2>Product Sub Type</h2>
+                        <div id="sub-type"></div>
+                    </div>
+                </div>
+                <div id="size">
+                    <div>
+                        <h2>Chothing Size</h2>
+                        <div id="clothing-sizes"></div>
+                    </div>
+                    <div>
+                        <h2>Shoe Size</h2>
+                        <div id="shoe-sizes"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="products">
+                <div>
+                    <h1 id="list-name"></h1>
+                    <select name="sort" id="sort">
+                        <option value="">Relevance</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-des">Price: High to Low</option>
+                        <option value="ratings-asc">Ratings: Low to High</option>
+                        <option value="ratings-des">Ratings: High to Low</option>
+                    </select>
+                    <div id="product-list"></div>
+                    <select id="pages"></select>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="./scripts/product-list.js"></script>
+</html>
