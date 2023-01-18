@@ -161,18 +161,18 @@ function create_pages(list)
 
 function display_products(list)
 {
-    let selected_filter_list
     if(page_not_changed)
     {
         _list = [];
         selected_filter_list = get_selected_filters_list();
-        list.forEach(element =>{
+        list.forEach(element =>
+        {
             if(is_valid_to_display(selected_filter_list, element)) _list.push(element);
         })
         _list = sort_list(_list);
         create_pages(_list);
     }
-console.log(selected_filter_list);
+
     document.querySelector("#product-list").innerHTML = "";
 
     for(let i = +current_page.split("-")[0]; i <= +current_page.split("-")[1]; i++)
@@ -564,7 +564,8 @@ async function get_base_url()
     }
 }
 
-let items_per_page = 4;
+let selected_filter_list;
+let items_per_page = 40;
 let current_page;
 let _list;
 let page_not_changed = true;
