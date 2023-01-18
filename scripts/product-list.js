@@ -570,6 +570,7 @@ let _list;
 let page_not_changed = true;
 document.querySelector("#sort").value = "";
 
+
 get_base_url()
 .then(url =>
 {
