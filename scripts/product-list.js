@@ -17,15 +17,11 @@ function update_title_list_info()
         }
 
         let temp = "";
-        // Adding Name
-        for(let i = 0; i < query.length; i++)
-        {
-            if(query[i].name != undefined) temp += query[i].name + ", ";
-        }
+        
         // Adding Brand
         for(let i = 0; i < query.length; i++)
         {
-            if(query[i].brand != undefined) temp += query[i].brand + "'s ";
+            if(query[i].brand != undefined) temp += query[i].brand;
         }
         // Adding Type
         for(let i = 0; i < query.length; i++)
@@ -607,43 +603,35 @@ document.querySelector("#filter-close-small-screen").addEventListener("click", e
     is_display_filters = false;
 })
 
-get_base_url()
-.then(url =>
-{
-    get_data(url.products)
-    .then(list =>
-    { 
-        display_filters(get_filters(list));
+get_items()
+.then(list =>
+{ 
+    display_filters(get_filters(list));
 
-        update_title_list_info();
+    update_title_list_info();
 
-        display_products(list);
+    display_products(list);
 
-        document.querySelector("#filters").addEventListener("change", event =>
-        {
-            if(!event.target.getAttribute("class").includes("filter")) return;
-            
-            page_not_changed = true;
-            display_products(list);
-        })
-
-        document.querySelector("#sort").addEventListener("change", event =>
-        {
-            page_not_changed = true;
-            display_products(list);
-        })
-
-        document.querySelector("#pages").addEventListener("change", event =>
-        {
-            page_not_changed = false;
-            current_page = event.target.value;
-            display_products(list);
-        })
-    })
-    .catch(error =>
+    document.querySelector("#filters").addEventListener("change", event =>
     {
-        console.error(error);
-    });
+        if(!event.target.getAttribute("class").includes("filter")) return;
+        
+        page_not_changed = true;
+        display_products(list);
+    })
+
+    document.querySelector("#sort").addEventListener("change", event =>
+    {
+        page_not_changed = true;
+        display_products(list);
+    })
+
+    document.querySelector("#pages").addEventListener("change", event =>
+    {
+        page_not_changed = false;
+        current_page = event.target.value;
+        display_products(list);
+    })
 })
 .catch(error =>
 {
