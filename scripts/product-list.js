@@ -535,30 +535,6 @@ function get_filters(list)
     return filters;
 }
 
-async function get_data(url)
-{
-    try {
-        let response
-        if(window.location.href.includes("?") && window.location.href[window.location.href.length-1] != "?") response = await fetch(`${url}?${window.location.href.split("?")[1]}`);
-        else response = await fetch(url);
-        let data = await response.json();
-        return data;
-    } catch (error) {
-        return error;
-    }
-}
-
-async function get_base_url()
-{
-    try {
-        let response = await fetch("../url.json");
-        let data = await response.json();
-        return data;
-    } catch (error) {
-        return error;
-    }
-}
-
 let selected_filter_list;
 let items_per_page = 40;
 let current_page;
