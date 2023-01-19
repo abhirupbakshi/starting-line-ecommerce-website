@@ -22,10 +22,10 @@ Each user contents:
 * id: "User ID"
 * name: "Name of the user"
 * password: "Password of the user"
-* cart: [product id, product id, ...]
+* cart: [{id: "product id", quantity: "product quantity"}, ...]
 * given-rivews: [product id, product id, ...]
 
 API Documentation:
 
 * base_url/ : Returns all the products
-* base_url?gender="gender name"&type="product.type[0], product.type[1]" ...etc: Query Parameters
+* base_url?gender="gender name"&type="product.type[0], product.type[1]" ...etc: Query Parameters, only for genders, types,  brands or single products(identified by ids)

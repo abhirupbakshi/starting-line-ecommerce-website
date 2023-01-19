@@ -1,43 +1,3 @@
-function update_title_list_info()
-{
-    if(window.location.search == "")
-    {
-        document.querySelector("#list-name").innerText = "DISPLAYING ALL THE PRODUCTS"
-        document.querySelector("title").innerText = "DISPLAYING ALL THE PRODUCTS";
-    }
-    else
-    {
-        let result = new URLSearchParams(window.location.search)
-        let query = [];
-        for(let [key, value] of result)
-        {
-            let temp = {};
-            temp[key] = value;
-            query.push(temp);
-        }
-
-        let temp = "";
-        // Adding Name
-        for(let i = 0; i < query.length; i++)
-        {
-            if(query[i].name != undefined) temp += query[i].name + ", ";
-        }
-        // Adding Brand
-        for(let i = 0; i < query.length; i++)
-        {
-            if(query[i].brand != undefined) temp += query[i].brand + "'s ";
-        }
-        // Adding Type
-        for(let i = 0; i < query.length; i++)
-        {
-            if(query[i].type != undefined) temp += query[i].type.split(",").join(" ") + " ";
-        }
-
-        document.querySelector("#list-name").innerText = temp.toUpperCase();
-        document.querySelector("title").innerText = temp.toUpperCase();
-    }
-}
-
 function is_valid_to_display(selected_filter_list, product)
 {
     let brand;
@@ -157,22 +117,23 @@ function create_pages(list)
     })
 
     current_page = item_index[0];
+    document.querySelector("#total-pages").innerText = item_index.length;
 }
 
 function display_products(list)
 {
-    let selected_filter_list
     if(page_not_changed)
     {
         _list = [];
         selected_filter_list = get_selected_filters_list();
-        list.forEach(element =>{
+        list.forEach(element =>
+        {
             if(is_valid_to_display(selected_filter_list, element)) _list.push(element);
         })
         _list = sort_list(_list);
         create_pages(_list);
     }
-console.log(selected_filter_list);
+
     document.querySelector("#product-list").innerHTML = "";
 
     for(let i = +current_page.split("-")[0]; i <= +current_page.split("-")[1]; i++)
@@ -181,6 +142,7 @@ console.log(selected_filter_list);
         {
             let parent = document.createElement("div");
             document.querySelector("#product-list").append(parent);
+            parent.setAttribute("class", "product-card");
 
             let child = document.createElement("p");
             parent.append(child);
@@ -210,19 +172,14 @@ console.log(selected_filter_list);
             child = document.createElement("p");
             parent.append(child);
             child.setAttribute("class", "product-price");
-            child.innerText = _list[i].price;
+            child.innerText = "$" + _list[i].price;
 
             child = document.createElement("div");
             parent.append(child);
             child.setAttribute("class", "product-rating-div");
+            child.innerHTML = `<span></span><span>(${_list[i].rating.count})</span>`;
 
-            let _child = document.createElement("p");
-            child.append(_child);
-            _child.innerText = _list[i].rating.avg;
-
-            child = document.createElement("p");
-            child.append(_child);
-            _child.innerText = `(${_list[i].rating.count})`;
+            child.querySelector("span:first-child").style.setProperty("--rating", _list[i].rating.avg);
 
             child = document.createElement("p");
             parent.append(child);
@@ -230,6 +187,10 @@ console.log(selected_filter_list);
             if(_list[i].trending) child.innerText = "Trending";
         }
     }
+
+    document.querySelector("#list-count").innerHTML = ` ${_list.length} `
+    if(_list.length == 1) document.querySelector("#plural").innerText = "";
+    else document.querySelector("#plural").innerText = "s"
 }
 
 function get_selected_filters_list()
@@ -540,74 +501,77 @@ function get_filters(list)
     return filters;
 }
 
-async function get_data(url)
-{
-    try {
-        let response
-        if(window.location.href.includes("?") && window.location.href[window.location.href.length-1] != "?") response = await fetch(`${url}?${window.location.href.split("?")[1]}`);
-        else response = await fetch(url);
-        let data = await response.json();
-        return data;
-    } catch (error) {
-        return error;
-    }
-}
-
-async function get_base_url()
-{
-    try {
-        let response = await fetch("../url.json");
-        let data = await response.json();
-        return data;
-    } catch (error) {
-        return error;
-    }
-}
-
-let items_per_page = 4;
+let selected_filter_list;
+let items_per_page = 40;
 let current_page;
 let _list;
 let page_not_changed = true;
+let is_display_filters = true;
 document.querySelector("#sort").value = "";
 
-
-get_base_url()
-.then(url =>
+window.addEventListener("resize", event =>
 {
-    get_data(url.products)
-    .then(list =>
+    if(window.innerWidth > 570)
     {
-        display_filters(get_filters(list));
+        document.querySelector("#filters").style.display = "block";
+        document.querySelector("#products").style.display = "block";
+        is_display_filters = false;
+    }
+    else if(window.innerWidth <= 570)
+    {
+        if(is_display_filters) {
+            document.querySelector("#filters").style.display = "block";
+            document.querySelector("#products").style.display = "none";
+        }
+        else
+        {
+            document.querySelector("#filters").style.display = "none";
+            document.querySelector("#products").style.display = "block";
+        }
+    }
+})
 
+document.querySelector("#filters-small-screen").addEventListener("click", event =>
+{
+    document.querySelector("#filters").style.display = "block";
+    document.querySelector("#products").style.display = "none";
+    is_display_filters = true;
+})
+
+document.querySelector("#filter-close-small-screen").addEventListener("click", event =>
+{
+    document.querySelector("#filters").style.display = "none";
+    document.querySelector("#products").style.display = "block";
+    is_display_filters = false;
+})
+
+get_items()
+.then(list =>
+{ 
+    display_filters(get_filters(list));
+
+    display_products(list);
+
+    document.querySelector("#filters").addEventListener("change", event =>
+    {
+        if(!event.target.getAttribute("class").includes("filter")) return;
+        
+        page_not_changed = true;
         display_products(list);
-
-        update_title_list_info();
-
-        document.querySelector("#filters").addEventListener("change", event =>
-        {
-            if(!event.target.getAttribute("class").includes("filter")) return;
-            
-            page_not_changed = true;
-            display_products(list);
-        })
-
-        document.querySelector("#sort").addEventListener("change", event =>
-        {
-            page_not_changed = true;
-            display_products(list);
-        })
-
-        document.querySelector("#pages").addEventListener("change", event =>
-        {
-            page_not_changed = false;
-            current_page = event.target.value;
-            display_products(list);
-        })
     })
-    .catch(error =>
+
+    document.querySelector("#sort").addEventListener("change", event =>
     {
-        console.error(error);
-    });
+        page_not_changed = true;
+        display_products(list);
+    })
+
+    document.querySelector("#pages").addEventListener("change", event =>
+    {
+        page_not_changed = false;
+        current_page = event.target.value;
+        display_products(list);
+    })
 })
 .catch(error =>
 {
