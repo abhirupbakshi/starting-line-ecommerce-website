@@ -213,7 +213,11 @@
     padding: 0.5em 2em;
 }
 
-#pagination > span
+#pagination > span:nth-child(2)
 {
-    padding: 0.5em 1em;
+    padding: 0em 1em;
+}
+
+#total-pages {
+    font-weight: 600;
 }

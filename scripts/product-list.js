@@ -1,39 +1,3 @@
-function update_title_list_info()
-{
-    if(window.location.search == "")
-    {
-        document.querySelector("#list-name").innerText = "DISPLAYING ALL THE PRODUCTS"
-        document.querySelector("title").innerText = "DISPLAYING ALL THE PRODUCTS";
-    }
-    else
-    {
-        let result = new URLSearchParams(window.location.search)
-        let query = [];
-        for(let [key, value] of result)
-        {
-            let temp = {};
-            temp[key] = value;
-            query.push(temp);
-        }
-
-        let temp = "";
-        
-        // Adding Brand
-        for(let i = 0; i < query.length; i++)
-        {
-            if(query[i].brand != undefined) temp += query[i].brand;
-        }
-        // Adding Type
-        for(let i = 0; i < query.length; i++)
-        {
-            if(query[i].type != undefined) temp += query[i].type.split(",").join(" ") + " ";
-        }
-
-        document.querySelector("#list-name").innerText = temp.toUpperCase();
-        document.querySelector("title").innerText = temp.toUpperCase();
-    }
-}
-
 function is_valid_to_display(selected_filter_list, product)
 {
     let brand;
@@ -224,7 +188,9 @@ function display_products(list)
         }
     }
 
-    document.querySelector("#list-count").innerHTML = ` (${_list.length})`
+    document.querySelector("#list-count").innerHTML = ` ${_list.length} `
+    if(_list.length == 1) document.querySelector("#plural").innerText = "";
+    else document.querySelector("#plural").innerText = "s"
 }
 
 function get_selected_filters_list()
@@ -583,8 +549,6 @@ get_items()
 .then(list =>
 { 
     display_filters(get_filters(list));
-
-    update_title_list_info();
 
     display_products(list);
 

@@ -10,10 +10,34 @@ function filter_data(data)
         parameters.push(temp);
     }
 
-    // filtering based on brand
+    // filtering based on id
     let temp = [];
     let has_present = false;
     let hold_index;
+    for(let i = 0; i < parameters.length; i++)
+    {
+        if(parameters[i].id != undefined)
+        {
+            has_present = true;
+            hold_index = i;
+        }
+    }
+    if(has_present)
+    {
+        for(let i = 0; i < data.length; i++)
+        {
+            if(parameters[hold_index].id == data[i].id)
+            {
+                return [data[i]];
+            }
+        }
+    }
+
+
+    // filtering based on brand
+    temp = [];
+    has_present = false;
+    hold_index;
     for(let i = 0; i < parameters.length; i++)
     {
         if(parameters[i].brand != undefined)
