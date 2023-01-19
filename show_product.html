@@ -4,40 +4,92 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./styles/show_product.css">
+        <link rel="stylesheet" href="./styles/common.css">
         <title></title>
     </head>
     <body>
         <div id="main">
             <section id="basic-info">
-                <div id="image-div"></div>
+                <div id="image-div">
+                    <img src="" alt="">
+                </div>
                 <div id="basic-info-div">
                     <div id="rating-div">
-                        <span></span>
-                        <span></span>
+                        <span></span><span></span>
                     </div>
                     <h1 id="product-name"></h1>
                     <h3 id="product-price"></h3>
                     <hr>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa tempora asperiores perferendis libero in, quam rem doloribus consequuntur, perspiciatis dicta amet ad quibusdam quasi mollitia laboriosam fuga. Quibusdam, minus? Quia!</p>
+                    <h3>Sizes:</h3>
                     <div id="sizes-div"></div>
                     <button id="add-to-cart">ADD TO CART</button>
                 </div>
             </section>
             <section id="more-info">
                 <div id="details" class="collapse-div">
-                    <span>Product Details</span>
-                    <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                    <div>
+                        <span>Product Details</span>
+                        <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                        <img src="./images/minus_sign.svg" alt="" class="collapse-field">
+                    </div>
+                    <p id="detail-p" class="infos"></p>
                 </div>
                 <div id="reviews" class="collapse-div">
-                    <span>Reviews</span>
-                    <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                    <div>
+                        <span>Reviews</span>
+                        <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                        <img src="./images/minus_sign.svg" alt="" class="collapse-field">
+                    </div>
+                    <div id="rating-div" class="infos" style="display: none;">
+                        <p id="rating"></p>
+                        <p id="rating-star"></p>
+                        <p id="rating-count">Total of <span></span> have people rated for this</p>
+                        <p id="review-p"></p>
+                    </div>
                 </div>
                 <div id="delivery" class="collapse-div">
-                    <span>Delivery</span>
-                    <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                    <div>
+                        <span>Delivery</span>
+                        <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                        <img src="./images/minus_sign.svg" alt="" class="collapse-field">
+                    </div>
+                    <div id="delivery-p" class="infos" style="display: none;">
+                        <h3>Finish Line offers a variety of shipping options to meet your needs for shipping within the United States.</h3>
+                        Finish Line offers <b>FREE SHIPPING</b> for any order where the order subtotal is over $75
+                        <h3>Continental U.S. Shipping Estimated Delivery</h3>
+                        <ul>
+                            <li>Standard 4-6 business days</li>
+                            <li>Upgraded 3-5 business days</li>
+                            <li>Rush 2 business days</li>
+                            <li>Express 1 business days</li>
+                        </ul>
+                        <h3>Hawaii and Alaska Estimated Delivery</h3>
+                        <ul>
+                            <li>Standard 13-14 business days</li>
+                            <li>Upgraded 5-6 business days</li>
+                            <li>Rush 3 business days</li>
+                            <li>Express 1 business day</li>
+                        </ul><br>
+                        Visit our <a href="#" style="color: black;">Shipping Policy</a> for more information.
+                        <br><br>
+                        *Not applicable to Youth Foundation Donations
+                    </div>
                 </div>
                 <div id="returns" class="collapse-div">
-                    <span>Returns</span>
-                    <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                    <div>
+                        <span>Returns</span>
+                        <img src="./images/plus_sign.svg" alt="" class="expand-field">
+                        <img src="./images/minus_sign.svg" alt="" class="collapse-field">
+                    </div>
+                    <p id="returns-p" class="infos">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis deleniti perspiciatis laboriosam voluptatibus sapiente placeat ipsam magni repudiandae perferendis suscipit odio sed voluptate consectetur id earum iste labore, aliquid optio!
+                        Inventore, est ut? Incidunt, minus. Quia perspiciatis culpa dolores in, non exercitationem unde repellat. Rem consequatur voluptatibus, illo expedita veritatis excepturi voluptate. Ipsam, eum? Fuga quasi facere tempora natus ullam?
+                        Dolorem, tempore minus at eius dolore earum quis id corrupti ad quaerat sint et veniam cum, repudiandae magni! Eum voluptates debitis quis harum excepturi tenetur nisi aut blanditiis, dolores cupiditate.
+                        Nesciunt suscipit consequatur commodi illo similique sunt optio deserunt culpa a officia sit veritatis hic nemo saepe adipisci odio quam dolorem expedita vero impedit provident, odit quos consectetur reprehenderit. Doloribus?
+                        Asperiores voluptates atque dicta id modi quia in distinctio officiis! Ducimus, nisi animi minus excepturi a quibusdam exercitationem doloribus voluptate dolores molestiae incidunt, nemo, possimus sed amet laborum soluta explicabo.
+                    </p>
                 </div>
             </section>
         </div>

@@ -1,32 +1,9 @@
-function sync_cart(local_cart, server_cart)
-{
-    for(let i = 0; i < local_cart.length; i++)
-    {
-        let not_present = true;
-        for(let j = 0; j < server_cart.length; j++)
-        {
-            if(local_cart[i].id == server_cart[j].id)
-            {
-                not_present = false;
-                if(local_cart[i].quantity > server_cart[j].quantity)
-                {
-                    server_cart[j].quantity = local_cart[i].quantity;
-                }
-            }
-        }
-
-        if(not_present) server_cart.push(local_cart[i]);
-    }
-
-    return server_cart;
-}
-
 function update_cart(cart, item)
 {
     let not_present = true;
     for(let i = 0; i < cart.length; i++)
     {
-        if(cart[i].id == item.id)
+        if(cart[i].id == item.id && cart[i].size == selected_size)
         {
             cart[i].quantity++;
             not_present = false;
@@ -38,6 +15,7 @@ function update_cart(cart, item)
         let temp = {};
         temp["id"] = item.id;
         temp["quantity"] = 1;
+        temp["size"] = selected_size;
 
         cart.push(temp);
     }
@@ -47,7 +25,9 @@ function update_cart(cart, item)
 
 function display_item(item)
 {
-    document.querySelector("#image-div").setAttribute("src", item.img);
+    document.querySelector("#image-div img").setAttribute("src", item.img);
+    document.querySelector("#rating-div span:first-child").style.setProperty("--rating", item.rating.avg);
+    document.querySelector("#rating-div span:last-child").innerText = "(" + item.rating.count + ")";
     document.querySelector("#product-name").innerText = item.name.toUpperCase();
     document.querySelector("#product-price").innerText = "$" + item.price;
 
@@ -57,16 +37,28 @@ function display_item(item)
         let child = document.createElement("span");
         parent.append(child);
         child.innerText = element;
+        child.setAttribute("class", "size");
     });
+
+    document.querySelector("#detail-p").innerText = item.description;
+    document.querySelector("#rating").innerText = item.rating.avg;
+    document.querySelector("#rating-star").style.setProperty("--rating", item.rating.avg);
+    document.querySelector("#rating-count span").innerText = item.rating.count;
 }
 
 let loggedin_user = JSON.parse(localStorage.getItem("loggedin-user"));
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let selected_size_element = null;
+let selected_size = null;
+
+
 
 get_items()
 .then(item =>{
     if(item.length > 1) return;
     item = item[0];
+
+    console.log(item);
 
     display_item(item);
 
@@ -88,6 +80,12 @@ get_items()
 
     document.querySelector("#add-to-cart").addEventListener("click", event =>
     {
+        if(selected_size == null)
+        {
+            alert("Select a product size!");
+            return;
+        }
+
         update_cart(cart, item);
 
         if(loggedin_user != null)
@@ -103,7 +101,39 @@ get_items()
         }
     })
 
-    console.log(item);
+    document.querySelector("#sizes-div").addEventListener("click", event =>
+    {
+        if(event.target.getAttribute("class") != "size") return;
+
+        if(selected_size_element != null && selected_size_element != event.target)
+        {
+            selected_size_element.style.backgroundColor = "white";
+            selected_size_element.style.color = "black";
+        }
+
+        event.target.style.backgroundColor = "#666666"
+        event.target.style.color = "white"
+        selected_size_element = event.target;
+        selected_size = event.target.innerText;
+    })
+
+    document.querySelectorAll(".expand-field").forEach(element => {
+        element.addEventListener("click", event =>
+        {
+            event.target.parentElement.parentElement.querySelector(".infos").style.display = "block";
+            event.target.parentElement.querySelector(".collapse-field").style.display = "inline";
+            event.target.parentElement.querySelector(".expand-field").style.display = "none";
+        })
+    })
+
+    document.querySelectorAll(".collapse-field").forEach(element => {
+        element.addEventListener("click", event =>
+        {
+            event.target.parentElement.parentElement.querySelector(".infos").style.display = "none";
+            event.target.parentElement.querySelector(".collapse-field").style.display = "none";
+            event.target.parentElement.querySelector(".expand-field").style.display = "inline";
+        })
+    })
 })
 .catch(error =>{
     console.error(error);
