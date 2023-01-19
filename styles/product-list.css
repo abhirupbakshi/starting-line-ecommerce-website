@@ -2,8 +2,6 @@
     /* border: 1px solid black; */
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-
 #main {
     width: 70%;
     margin: auto;
@@ -11,13 +9,47 @@
     margin-bottom: 5em;
 }
 
+@media screen and (max-width: 570px) {
+    #main {
+        width: 85%;
+    }
+}
+
 #filters {
+    display: block;
     height: fit-content;
     margin-right: 3%;
     padding: 2em;
     font-size: 1.1rem;    
     color: #666666;
-    border-right: 1px solid #666666 ;
+    border-right: 1px solid #666666;
+}
+
+@media screen and (max-width: 570px) {
+    #filters {
+        display: none;
+        width: 100%;
+        border-right: none;
+        padding: 0em 0em 0em 1em;
+    }
+}
+
+#filter-close-small-screen {
+    display: none;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    text-align: end;
+}
+
+#filter-close-small-screen:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 570px) {
+    #filter-close-small-screen {
+        display: block;
+        cursor: pointer;
+    }
 }
 
 #filters > div, #type > div, #size > div {
@@ -53,10 +85,28 @@
 
 #list-info 
 {
-    font-family: 'Oswald', sans-serif;
     font-size: 1.8rem;
     letter-spacing: -0.035em;
     margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 570px) {
+    #list-info {
+        text-align: center;
+    }
+}
+
+#filters-small-screen {
+    display: none;
+    width: 25px;
+    margin-bottom: 0.5em;
+}
+
+@media screen and (max-width: 570px) {
+    #filters-small-screen {
+        display: block;
+        cursor: pointer;
+    }
 }
 
 #sort {
@@ -68,12 +118,25 @@
     margin-bottom: 1.1em;
 }
 
+@media screen and (max-width: 570px) {
+    #sort {
+        margin: auto;
+        margin-bottom: 2em;
+    }
+}
+
 #product-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 245px);
+    column-gap: 1%;
     row-gap: 1.5em;
-    justify-content: space-between;
     color: #4e4e4e;
+}
+
+@media screen and (max-width: 570px) {
+    #product-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .product-card {
@@ -115,15 +178,29 @@
 .product-price {
     font-size: 0.9rem;
     margin-left: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .product-rating-div {
-    height: 1rem;
+    font-size: 1rem;
     margin-left: 0.5em;
 }
 
+.product-rating-div > span:first-child {
+    --percent: calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+}
+
+.product-rating-div > span:first-child::before {
+    content: '★★★★★';
+    background: linear-gradient(90deg, #666666 var(--percent), #fff var(--percent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .product-trend {
-    height: 1rem;
+    height: 1em;
     font-weight: 600;
     margin-left: 0.5em;
     color: #00a8f0;

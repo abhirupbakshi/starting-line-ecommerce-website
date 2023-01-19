@@ -217,14 +217,9 @@ function display_products(list)
             child = document.createElement("div");
             parent.append(child);
             child.setAttribute("class", "product-rating-div");
+            child.innerHTML = `<span></span><span>(${_list[i].rating.count})</span>`;
 
-            let _child = document.createElement("p");
-            child.append(_child);
-            _child.innerText = _list[i].rating.avg;
-
-            child = document.createElement("p");
-            child.append(_child);
-            _child.innerText = `(${_list[i].rating.count})`;
+            child.querySelector("span:first-child").style.setProperty("--rating", _list[i].rating.avg);
 
             child = document.createElement("p");
             parent.append(child);
@@ -573,8 +568,44 @@ let items_per_page = 40;
 let current_page;
 let _list;
 let page_not_changed = true;
+let is_display_filters = true;
 document.querySelector("#sort").value = "";
 
+window.addEventListener("resize", event =>
+{
+    if(window.innerWidth > 570)
+    {
+        document.querySelector("#filters").style.display = "block";
+        document.querySelector("#products").style.display = "block";
+        is_display_filters = false;
+    }
+    else if(window.innerWidth <= 570)
+    {
+        if(is_display_filters) {
+            document.querySelector("#filters").style.display = "block";
+            document.querySelector("#products").style.display = "none";
+        }
+        else
+        {
+            document.querySelector("#filters").style.display = "none";
+            document.querySelector("#products").style.display = "block";
+        }
+    }
+})
+
+document.querySelector("#filters-small-screen").addEventListener("click", event =>
+{
+    document.querySelector("#filters").style.display = "block";
+    document.querySelector("#products").style.display = "none";
+    is_display_filters = true;
+})
+
+document.querySelector("#filter-close-small-screen").addEventListener("click", event =>
+{
+    document.querySelector("#filters").style.display = "none";
+    document.querySelector("#products").style.display = "block";
+    is_display_filters = false;
+})
 
 get_base_url()
 .then(url =>
