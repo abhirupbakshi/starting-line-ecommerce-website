@@ -1,0 +1,158 @@
+body {
+    width: 350px;
+    margin: auto;
+}
+
+section:nth-child(1) img {
+    display: block;
+    margin: auto;
+    width: 100%;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    cursor: pointer;
+}
+
+section:nth-child(2) {
+    margin-bottom: 2em;
+}
+
+section:nth-child(2) h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+form > input, #pass-div input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em;
+    font-size: 1em;
+}
+
+form > input {
+    margin-bottom: 1em;
+}
+
+#pass-div input {
+    flex: 5;
+}
+
+#pass-div {
+    display: flex;
+    border: 1px solid black;
+    margin-bottom: 1em;
+}
+
+#password {
+    border-width: 0px;
+}
+
+#pass-div span {
+    flex: 1;
+    text-align: center;
+    margin: auto;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+#pass-rules {
+    display: none;
+}
+
+#pass-div ~ p {
+    margin-bottom: 0.9em;
+    font-size: 0.8rem;
+    color: #666666;
+}
+
+#pass-div ~ p a {
+    color: #666666;
+}
+
+#wrong-credentials {
+    display: none;
+}
+
+#pass-rules {
+    margin-bottom: 1em;
+}
+
+#pass-rules p {
+    font-size: 0.8rem;
+    margin-bottom: 0.5em;
+}
+
+#pass-rules p:first-child {
+    color: #666666;
+}
+
+#pass-div ~ a {
+    color: black;
+    display: block;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+}
+
+#pass-div ~ a:hover {
+    color: #02837c;
+}
+
+#pass-div ~ input {
+    background-color: #73fbf4;
+    font-weight: 600;
+    border-width: 0px;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+#signup-page-submit {
+    margin-top: 2em;
+}
+
+form ~ p {
+    margin-top: 1em;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+form ~ p a {
+    color: black;
+}
+
+#pass-div ~ input:hover {
+    background-color: #02837c;
+}
+
+section:nth-child(3)
+{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+section:nth-child(3) h2 {
+    margin-bottom: 0.8em;
+}
+
+section:nth-child(3) p {
+    margin-bottom: 0.5em;
+}
+
+section:nth-child(3) a {
+    color: black;   
+}
+
+body > a {
+    display: block;
+    width: 100%;
+    padding: 0.8em 0em;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+}
+
+body > a:hover {
+    background-color: black;
+    color: white;
+}

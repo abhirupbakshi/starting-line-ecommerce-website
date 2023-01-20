@@ -44,7 +44,7 @@ function display_item(item)
     document.querySelector("#rating").innerText = item.rating.avg;
     document.querySelector("#rating-star").style.setProperty("--rating", item.rating.avg);
     document.querySelector("#rating-count").innerHTML = "Total of <b>" + item.rating.count + "</b> have people rated for this";
-    // document.querySelector("#rating-count span").innerText = item.rating.count;
+    document.querySelector("title").innerText = item.name;
 }
 
 let loggedin_user = JSON.parse(localStorage.getItem("loggedin-user"));

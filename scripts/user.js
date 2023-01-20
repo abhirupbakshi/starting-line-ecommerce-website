@@ -65,14 +65,8 @@ window.remove_user = async function(id)
     }
 }
 
-window.create_user = async function(name, pass)
+window.create_user = async function(user)
 {
-    let user = {
-        name: name,
-        password: pass,
-        cart: []
-    }
-
     try {
         let response = await fetch("https://retoolapi.dev/gYlqFA/data", {
             method: "POST",
@@ -88,46 +82,3 @@ window.create_user = async function(name, pass)
         return error;
     }
 }
-
-
-
-
-// create_user("user", "1234")
-// .then(data =>
-//     {
-//         console.log(data);
-//     })
-// .catch(error =>
-//     {
-//         console.error(error);
-//     })
-
-// remove_user(1)
-// .then(data =>
-//     {
-//         console.log(data);
-//     })
-// .catch(error =>
-//     {
-//         console.error(error);
-//     })
-
-// get_user(2)
-// .then(data =>
-// {
-//     console.log(data);
-// })
-// .catch(error =>
-// {
-//     console.error(error);
-// })
-
-// update_user(2, {name: "users", password: "12348585", ok: 1})
-// .then(data =>
-// {
-//     console.log(data);
-// })
-// .catch(error =>
-// {
-//     console.error(error);
-// })

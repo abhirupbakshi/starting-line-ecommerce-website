@@ -20,6 +20,7 @@ Each product contents:
 Each user contents:
 
 * id: "User ID"
+* email: "Email of the user"
 * name: "Name of the user"
 * password: "Password of the user"
 * cart: [{id: "product id", quantity: "product quantity"}, ...]
