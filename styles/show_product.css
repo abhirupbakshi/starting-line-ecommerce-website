@@ -180,12 +180,14 @@ img {
 
 #rating {
     margin-bottom: 0.2em;
+    font-size: 5rem;
 }
 
 #rating-star {
     --percent: calc(var(--rating) / 5 * 100%);
     display: inline-block;
     margin-bottom: 0.2em;
+    font-size: 5rem;
 }
 
 #rating-star::before {
@@ -196,10 +198,6 @@ img {
     -webkit-text-fill-color: transparent;
 }
 
-#rating-count {
+#rating-count, #rating-count * {
     font-size: 2rem;
-}
-
-#rating-count span {
-    font-weight: 600;
 }
