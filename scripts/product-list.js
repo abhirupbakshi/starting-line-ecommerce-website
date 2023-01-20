@@ -142,48 +142,49 @@ function display_products(list)
         {
             let parent = document.createElement("div");
             document.querySelector("#product-list").append(parent);
-            parent.setAttribute("class", "product-card");
+            parent.setAttribute("class", "product-card list-entry");
 
             let child = document.createElement("p");
             parent.append(child);
-            child.setAttribute("class", "product-id");
+            child.setAttribute("class", "product-id list-entry");
             child.innerText = _list[i].id;
             child.style.display = "none"
 
             child = document.createElement("img");
             parent.append(child);
             child.setAttribute("src", _list[i].img);
-            child.setAttribute("class", "product-img");
+            child.setAttribute("class", "product-img list-entry");
 
 
             child = document.createElement("hr");
             parent.append(child);
+            child.setAttribute("class", "list-entry");
             
             child = document.createElement("h2");
             parent.append(child);
-            child.setAttribute("class", "product-name");
+            child.setAttribute("class", "product-name list-entry");
             child.innerText = _list[i].name;
 
             child = document.createElement("h3");
             parent.append(child);
-            child.setAttribute("class", "product-brand");
+            child.setAttribute("class", "product-brand list-entry");
             child.innerText = _list[i].brand;
 
             child = document.createElement("p");
             parent.append(child);
-            child.setAttribute("class", "product-price");
+            child.setAttribute("class", "product-price list-entry");
             child.innerText = "$" + _list[i].price;
 
             child = document.createElement("div");
             parent.append(child);
-            child.setAttribute("class", "product-rating-div");
-            child.innerHTML = `<span></span><span>(${_list[i].rating.count})</span>`;
+            child.setAttribute("class", "product-rating-div list-entry");
+            child.innerHTML = `<span class="list-entry"></span><span class="list-entry">(${_list[i].rating.count})</span>`;
 
             child.querySelector("span:first-child").style.setProperty("--rating", _list[i].rating.avg);
 
             child = document.createElement("p");
             parent.append(child);
-            child.setAttribute("class", "product-trend");
+            child.setAttribute("class", "product-trend list-entry");
             if(_list[i].trending) child.innerText = "Trending";
         }
     }
@@ -571,6 +572,15 @@ get_items()
         page_not_changed = false;
         current_page = event.target.value;
         display_products(list);
+    })
+
+    document.querySelector("#product-list").addEventListener("click", event =>
+    {
+        if(event.target.getAttribute("class") != null && !event.target.getAttribute("class").includes("list-entry")) return;
+
+        product_id = +event.target.parentElement.querySelector("p:first-child").innerText;
+
+        window.location.href = `${window.location.href.split("/")[0]}//${window.location.href.split("/")[2]}/show_product.html?id=${event.target.parentElement.querySelector("p:first-child").innerText}`;
     })
 })
 .catch(error =>
