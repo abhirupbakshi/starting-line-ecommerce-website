@@ -1,20 +1,45 @@
-import { create_UUID } from "./uuid.js";
+import { create_UUID, sleep } from "./uuid.js";
+
+async function hard_fetch()
+{
+    try {
+        await new Promise(resolve => setTimeout(resolve, sleep));
+
+        let response = await fetch(users_url);
+        response = await response.json();
+        return response.users;
+    } catch (error) {
+        return error;
+    }
+}
+
+async function set_local_storage()
+{
+    let response = await hard_fetch();
+    localStorage.setItem("user-list", JSON.stringify(response));
+    return response;
+}
 
 async function get_user(uuid = null)
 {
     try {
-        let response = await fetch(users_url);
-        response = await response.json();
+        let response;
+
+        if(user_list == null)
+        {
+            response = await set_local_storage();
+        }
+        else response = user_list;
 
         if(uuid != null)
         {
-            for(let i = 0; i < response.users.length; i++)
+            for(let i = 0; i < response.length; i++)
             {
-                if(response.users[i].uuid == uuid) return response.users[i];
+                if(response[i].uuid == uuid) return response[i];
             }
         }
         else
-            return response.users;
+            return response;
     } catch (error) {
         return error;
     }
@@ -39,6 +64,8 @@ async function update_user(modified_user)
         }
         if(not_present) return Promise.reject("Cannot find user");
         
+        await new Promise(resolve => setTimeout(resolve, sleep));
+
         let response = await fetch(users_url, {
             method: "POST",
             headers: {
@@ -50,6 +77,7 @@ async function update_user(modified_user)
         })
 
         response = await response.text();
+        await set_local_storage();
         return response;
     } 
     catch (error) {
@@ -69,6 +97,8 @@ async function delete_user(uuid)
             if(element.uuid != uuid) temp.push(element);
         });
         
+        await new Promise(resolve => setTimeout(resolve, sleep));
+        
         let response = await fetch(users_url, {
             method: "POST",
             headers: {
@@ -80,6 +110,7 @@ async function delete_user(uuid)
         })
 
         response = await response.text();
+        await set_local_storage();
         return response;
     } 
     catch (error) {
@@ -101,6 +132,8 @@ async function create_user(name, password, email)
     }
 
     try {
+        await new Promise(resolve => setTimeout(resolve, sleep));
+
         let response = await fetch(users_url, {
             method: "PUT",
             headers: {
@@ -111,6 +144,7 @@ async function create_user(name, password, email)
             })
         })
         response = await response.json();
+        await set_local_storage();
         return response;
     } catch (error) {
         return error;
@@ -118,6 +152,7 @@ async function create_user(name, password, email)
 }
 
 const users_url = "https://getpantry.cloud/apiv1/pantry/60d92381-f2b1-40b1-b9e2-1324f1e1357f/basket/users";
+let user_list = JSON.parse(localStorage.getItem("user-list"));
 
 export {
     get_user,

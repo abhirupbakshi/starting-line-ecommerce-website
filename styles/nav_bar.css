@@ -1,0 +1,213 @@
+#nav-bar {
+    width: 70%;
+    margin: auto;
+    margin-top: 2em;
+}
+
+@media screen and (max-width: 1000px) {
+    #nav-bar {
+        margin-top: 1em;
+        width: 90%;
+    }
+}
+
+#top-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1000px) {
+    #top-div {
+        display: block;
+    }
+}
+
+#top-div a {
+    width: 22%;
+    height: fit-content;
+}
+
+#top-div > a > img {
+    width: 100%;
+    min-width: 300px;
+}
+
+@media screen and (max-width: 1000px) {
+    #top-div > a > img {
+        margin-bottom: 1em;
+    }
+}
+
+#top-div > div {
+    position: relative;
+}
+
+#account-search-div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#ham-menu {
+    display: none;
+    width: 32px;
+    height: 20px;
+}
+
+@media screen and (max-width: 620px) {
+    #ham-menu {
+        display: block;
+        margin: auto;
+        margin-right: 1em;
+        cursor: pointer;
+    }
+}
+
+#search {
+    height: fit-content;
+    padding: 1em;
+    font-size: 1.1rem;
+    border: 1px solid #666666;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1000px) {
+    #search {
+        width: 100%;
+    }
+}
+
+#account {
+    display: flex;
+    border: 1px solid #666666;
+    border-left: 0px solid white;
+    cursor: pointer;
+    padding: 0em 0.5em;
+}
+
+@media screen and (max-width: 1000px) {
+    #account {
+        padding: 0em;
+    }
+}
+
+#account img {
+    display: block;
+    width: 2.5em;
+    margin: auto 0em;
+}
+
+#account p {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    margin-right: 0.5em;
+}
+
+#hidden-account-search-div {
+    display: none;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    text-align: end;
+    box-sizing: border-box;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: 1px solid #666666;
+}
+
+#hidden-account-search-div a {
+    display: block;
+    width: 100%;
+    text-align: end;
+    color: black;
+    text-decoration: none;
+}
+
+#hidden-account-search-div * {
+    padding: 0.5em 0em;
+}
+
+#hidden-account-search-div *:hover {
+    color: #008fdb;
+    text-decoration: underline;
+}
+
+#catagories-container {
+    width: 100%;
+}
+
+#bottom-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 1em 30% 1em 0em;
+    margin-top: 1em;
+}
+
+@media screen and (max-width: 620px) {
+    #bottom-div {
+        padding-right: 0%;
+    }
+}
+
+#bottom-div a {
+    font-size: 1rem;
+    color:  black;
+    text-decoration: none;
+}
+
+#bottom-div a:hover {
+    color: #008fdb;
+}
+
+#hidden-div {
+    left: 0;
+    display: none;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0px 5px 5px 1px rgb(155, 155, 155);
+    box-sizing: border-box;
+    padding: 1em 15% 2em 15%;
+}
+
+@media screen and (max-width: 1000px) {
+    #hidden-div {
+        padding: 1em 5% 2em 5%;
+    }
+}
+
+#bottom-div:hover + #hidden-div {
+    display: flex;
+}
+
+#hidden-div:hover {
+    display: flex;
+}
+
+#hidden-div > * {
+    flex: 1;
+}
+
+#hidden-div > div > a {
+    display: block;
+    padding: 0.5em 0em;
+    color: black;
+    text-decoration: none;
+}
+
+#hidden-div > div > a:first-child {
+    font-weight: 600;
+}
+
+#hidden-div > div > a:hover {
+    text-decoration: underline;
+}
+
+#sign-out {
+    cursor: pointer;
+}

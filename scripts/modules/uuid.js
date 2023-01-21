@@ -7,3 +7,5 @@ export function create_UUID(){
     });
     return uuid;
 }
+
+export let sleep = 1000;

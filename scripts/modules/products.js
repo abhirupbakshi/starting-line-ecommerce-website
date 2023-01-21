@@ -1,4 +1,24 @@
-import { create_UUID } from "./uuid.js";
+import { create_UUID, sleep } from "./uuid.js";
+
+async function hard_fetch()
+{
+    try {
+        await new Promise(resolve => setTimeout(resolve, sleep));
+
+        let response = await fetch(products_url);
+        response = await response.json();
+        return response.products;
+    } catch (error) {
+        return error;
+    }
+}
+
+async function set_local_storage()
+{
+    let response = await hard_fetch();
+    localStorage.setItem("product-list", JSON.stringify(response));
+    return response;
+}
 
 function filter_products(data)
 {
@@ -140,19 +160,40 @@ function filter_products(data)
 async function get_product(uuid = null)
 {
     try {
-        let response = await fetch(products_url);
-        response = await response.json();
+        let response;
 
+        if(product_list == null)
+        {
+            response = await set_local_storage();
+        }
+        else response = product_list;
+        
         if(uuid != null)
         {
-            for(let i = 0; i < response.products.length; i++)
+            for(let i = 0; i < response.length; i++)
             {
-                if(response.products[i].uuid == uuid) return response.products[i];
+                if(response[i].uuid == uuid) return response[i];
             }
             return {};
         }
         else
-            return filter_products(response.products);
+            return filter_products(response);
+    } catch (error) {
+        return error;
+    }
+}
+
+async function get_all_product()
+{
+    try {
+        let response;
+
+        if(product_list == null)
+        {
+            response = await set_local_storage();
+        }
+        else response = product_list;
+        return response;
     } catch (error) {
         return error;
     }
@@ -176,6 +217,8 @@ async function update_product(modified_product)
         }
         if(not_present) return Promise.reject("Cannot find product");
         
+        await new Promise(resolve => setTimeout(resolve, sleep));
+
         let response = await fetch(products_url, {
             method: "POST",
             headers: {
@@ -186,7 +229,10 @@ async function update_product(modified_product)
             })
         })
 
+        await set_local_storage();
+
         response = await response.text();
+
         return response;
     } 
     catch (error) {
@@ -198,7 +244,8 @@ async function delete_product(uuid)
 {
     if(uuid == undefined) return Promise.reject("Provide a UUID");
 
-    try {
+    try
+    {
         let product_list = await get_product();
         
         let temp = [];
@@ -206,6 +253,8 @@ async function delete_product(uuid)
             if(element.uuid != uuid) temp.push(element);
         });
         
+        await new Promise(resolve => setTimeout(resolve, sleep));
+
         let response = await fetch(products_url, {
             method: "POST",
             headers: {
@@ -217,6 +266,7 @@ async function delete_product(uuid)
         })
 
         response = await response.text();
+        await set_local_storage();
         return response;
     } 
     catch (error) {
@@ -252,6 +302,8 @@ async function create_product(img, name, brand, price, gender, type, size, descr
     }
 
     try {
+        await new Promise(resolve => setTimeout(resolve, sleep));
+        
         let response = await fetch(products_url, {
             method: "PUT",
             headers: {
@@ -262,6 +314,7 @@ async function create_product(img, name, brand, price, gender, type, size, descr
             })
         })
         response = await response.json();
+        await set_local_storage();
         return response;
     } catch (error) {
         return error;
@@ -269,10 +322,12 @@ async function create_product(img, name, brand, price, gender, type, size, descr
 }
 
 const products_url = "https://getpantry.cloud/apiv1/pantry/60d92381-f2b1-40b1-b9e2-1324f1e1357f/basket/products";
+let product_list = JSON.parse(localStorage.getItem("product-list"));
 
 export {
     create_product,
     get_product,
+    get_all_product,
     update_product,
     delete_product
 }

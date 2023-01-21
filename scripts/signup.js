@@ -115,6 +115,7 @@ if(loggedin_user != null)
 {
     document.body.style.display = "none";
     console.error("Already logged in");
+    window.location.href = "./index.html";
 }
 
 

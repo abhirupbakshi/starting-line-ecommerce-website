@@ -6,9 +6,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./styles/product_list.css">
         <link rel="stylesheet" href="./styles/common.css">
+        <link rel="stylesheet" href="./styles/nav_bar.css">
         <title></title>
     </head>
     <body>
+        <div id="nav-bar">
+            <div id="top-div">
+                <a href="./index.html">
+                    <img src="./images/logo.svg" alt="">
+                </a>
+                <div>
+                    <div id="account-search-div">
+                        <input id="search" type="text">
+                        <div id="account">
+                            <img src="./images/account.svg" alt="">
+                            <p>Account</p>
+                        </div>
+                    </div>
+                    <div id="hidden-account-search-div"></div>
+                </div>
+            </div>
+            <div id="bottom-div">
+                <a href="./product_list.html?gender=women">WOMEN</a>
+                <a href="./product_list.html?gender=men">MEN</a>
+                <a href="./product_list.html?gender=boys">BOYS</a>
+                <a href="./product_list.html?gender=girls">GIRLS</a>
+                <a href="./product_list.html">SEE ALL PRODUCTS</a>
+            </div>
+            <div id="hidden-div">
+                <div id="shoe"></div>
+                <div id="clothing"></div>
+                <div id="brand"></div>
+            </div>
+        </div>
         <div id="main">
             <div id="filters">
                 <p id="filter-close-small-screen">Close</p>
@@ -61,4 +91,5 @@
         </div>
     </body>
     <script src="./scripts/product_list.js" type="module"></script>
+    <script src="./scripts/nav_bar.js" type="module"></script>
 </html>

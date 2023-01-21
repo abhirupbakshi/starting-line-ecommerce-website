@@ -1,6 +1,4 @@
 import { get_product } from "./modules/products.js"
-// import { get_user, update_user } from "./modules/users.js"
-// import { create_UUID } from "./modules/uuid.js";
 
 function is_valid_to_display(selected_filter_list, product)
 {
