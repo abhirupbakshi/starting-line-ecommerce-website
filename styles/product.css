@@ -1,9 +1,6 @@
 img {
     width: 200px;
 }
-* {
-    /* border: 1px solid black; */
-}
 
 #main {
     width: 65%;
@@ -83,6 +80,10 @@ img {
 #product-name {
     font-size: 1.5rem;
     margin-bottom: 2em;
+}
+
+#product-brand {
+    margin-bottom: 1em;
 }
 
 #product-price {

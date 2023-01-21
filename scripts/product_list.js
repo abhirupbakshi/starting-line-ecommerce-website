@@ -1,3 +1,7 @@
+import { get_product } from "./modules/products.js"
+// import { get_user, update_user } from "./modules/users.js"
+// import { create_UUID } from "./modules/uuid.js";
+
 function is_valid_to_display(selected_filter_list, product)
 {
     let brand;
@@ -147,7 +151,7 @@ function display_products(list)
             let child = document.createElement("p");
             parent.append(child);
             child.setAttribute("class", "product-id list-entry");
-            child.innerText = _list[i].id;
+            child.innerText = _list[i].uuid;
             child.style.display = "none"
 
             child = document.createElement("img");
@@ -546,10 +550,10 @@ document.querySelector("#filter-close-small-screen").addEventListener("click", e
     is_display_filters = false;
 })
 
-get_items()
+get_product()
 .then(list =>
-{ 
-    display_filters(get_filters(list));
+{
+    display_filters(get_filters(list));   
 
     display_products(list);
 
@@ -559,7 +563,7 @@ get_items()
         
         page_not_changed = true;
         display_products(list);
-    })
+    }) 
 
     document.querySelector("#sort").addEventListener("change", event =>
     {
@@ -578,9 +582,7 @@ get_items()
     {
         if(event.target.getAttribute("class") != null && !event.target.getAttribute("class").includes("list-entry")) return;
 
-        product_id = +event.target.parentElement.querySelector("p:first-child").innerText;
-
-        window.location.href = `${window.location.href.split("/")[0]}//${window.location.href.split("/")[2]}/show_product.html?id=${event.target.parentElement.querySelector("p:first-child").innerText}`;
+        window.location.href = `./product.html?uuid=${event.target.parentElement.querySelector("p:first-child").innerText}`;
     })
 })
 .catch(error =>
