@@ -87,6 +87,7 @@ function show_hidden_div(hover_value, product_list)
 
 let loggedin_user = JSON.parse(localStorage.getItem("loggedin-user"));
 let user = null;
+document.querySelector("#nav-bar #search").setAttribute("placeholder", "Search");
 
 get_all_product()
 .then(product_list =>
