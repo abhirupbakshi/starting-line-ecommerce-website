@@ -1,3 +1,21 @@
+import { get_user, update_user, create_user } from "./modules/users.js"
+
+async function check_email_avilibility(email)
+{
+    try {
+        let user_list = await get_user();
+        
+        for(let i = 0; i < user_list.length; i++)
+        {
+            if(user_list[i].email == email) return false;
+        }
+
+        return true;
+    } catch (error) {
+        return error
+    }        
+}
+
 function check_password_validity(password)
 {
     // Checking for length
@@ -91,28 +109,55 @@ function check_password_validity(password)
 
 let pass_validity = false;
 check_password_validity(document.querySelector("#password").value);
+let loggedin_user = JSON.parse(localStorage.getItem("loggedin-user"));
+
+if(loggedin_user != null) 
+{
+    document.body.style.display = "none";
+    console.error("Already logged in");
+    window.location.href = "./index.html";
+}
+
 
 document.querySelector("form").addEventListener("submit", event =>
 {
     event.preventDefault();
 
+    document.querySelector("form input:last-child").setAttribute("value", "SIGNING UP...")
+
     if(pass_validity)
     {
-        user = {
+        let user = {
             name: document.querySelector("#name").value,
             email: document.querySelector("#email").value,
             password: document.querySelector("#password").value,
             cart: []
         }
 
-        create_user(user)
-        .then(response =>
-        {
-            window.location.href = "./signin.html";
-        })
-        .catch(error =>
-        {
-            console.error(error);
+        console.log(1);
+        check_email_avilibility(user.email)
+        .then(value => {
+            if(value)
+            {
+                create_user(user.name, user.password, user.email)
+                .then(response =>
+                {
+                    window.location.href = "./signin.html";
+                })
+                .catch(error =>
+                {
+                    alert("Can not create user");
+                    console.error(error);
+                    console.error("Cannot create user");
+                    document.querySelector("form input:last-child").setAttribute("value", "SIGN UP");
+                })
+            }
+            else
+            {
+                alert("Email already present");
+                document.querySelector("form input:last-child").setAttribute("value", "SIGN UP");
+                return;
+            }
         })
     }
 })

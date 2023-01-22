@@ -4,11 +4,41 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./styles/show_product.css">
+        <link rel="stylesheet" href="./styles/product.css">
         <link rel="stylesheet" href="./styles/common.css">
+        <link rel="stylesheet" href="./styles/nav_bar.css">
         <title></title>
     </head>
     <body>
+        <div id="nav-bar">
+            <div id="top-div">
+                <a href="./index.html">
+                    <img src="./images/logo.svg" alt="">
+                </a>
+                <div>
+                    <div id="account-search-div">
+                        <input id="search" type="text">
+                        <div id="account">
+                            <img src="./images/account.svg" alt="">
+                            <p>Account</p>
+                        </div>
+                    </div>
+                    <div id="hidden-account-search-div"></div>
+                </div>
+            </div>
+            <div id="bottom-div">
+                <a href="./product_list.html?gender=women">WOMEN</a>
+                <a href="./product_list.html?gender=men">MEN</a>
+                <a href="./product_list.html?gender=boys">BOYS</a>
+                <a href="./product_list.html?gender=girls">GIRLS</a>
+                <a href="./product_list.html">SEE ALL PRODUCTS</a>
+            </div>
+            <div id="hidden-div">
+                <div id="shoe"></div>
+                <div id="clothing"></div>
+                <div id="brand"></div>
+            </div>
+        </div>
         <div id="main">
             <section id="basic-info">
                 <div id="image-div">
@@ -19,6 +49,7 @@
                         <span></span><span></span>
                     </div>
                     <h1 id="product-name"></h1>
+                    <h2 id="product-brand"></h2>
                     <h3 id="product-price"></h3>
                     <hr>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa tempora asperiores perferendis libero in, quam rem doloribus consequuntur, perspiciatis dicta amet ad quibusdam quasi mollitia laboriosam fuga. Quibusdam, minus? Quia!</p>
@@ -94,7 +125,6 @@
             </section>
         </div>
     </body>
-    <script src="./scripts/user.js"></script>
-    <script src="./scripts/product.js"></script>
-    <script src="./scripts/show_product.js"></script>
+    <script src="./scripts/nav_bar.js" type="module"></script>
+    <script src="./scripts/product.js" type="module"></script>
 </html>

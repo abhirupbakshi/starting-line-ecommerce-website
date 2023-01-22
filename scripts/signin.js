@@ -1,3 +1,5 @@
+import { get_user, update_user } from "./modules/users.js"
+
 function sync_carts(server_cart, local_cart)
 {
     for(let i = 0;  i < local_cart.length; i++)
@@ -5,7 +7,7 @@ function sync_carts(server_cart, local_cart)
         let not_present = true;
         for(let j = 0; j < server_cart.length; j++)
         {
-            if(local_cart[i].id == server_cart[j].id && local_cart[i].size == server_cart[j].size)
+            if(local_cart[i].uuid == server_cart[j].uuid)
             {
                 if(local_cart[i].quantity != server_cart[j].quantity)
                 {
@@ -24,62 +26,63 @@ function sync_carts(server_cart, local_cart)
 
 let loggedin_user = JSON.parse(localStorage.getItem("loggedin-user"));
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let user;
+
+if(loggedin_user != null) 
+{
+    document.body.style.display = "none";
+    console.error("Already logged in");
+    window.location.href = "./index.html";
+}
+
+get_user() //Getting all user
+.then(data =>
+{
+    user = data;
+})
+.catch(error =>
+{
+    console.error(error);
+})
 
 document.querySelector("form").addEventListener("submit", event =>
 {
     event.preventDefault();
 
-    get_user() //Getting all user
-    .then(user => {
+    document.querySelector("form input:last-child").setAttribute("value", "SIGNING IN...");
 
-        let not_found = true;
+    let not_found = true;
 
-        for(let i = 0; i < user.length; i++)
+    for(let i = 0; i < user.length; i++)
+    {
+        if(user[i].email == document.querySelector("#email").value && user[i].password == document.querySelector("#password").value)
         {
-            if(user[i].email == document.querySelector("#email").value && user[i].password == document.querySelector("#password").value)
-            {
-                not_found = false;
-                
-                loggedin_user = user[i].id;
-                localStorage.setItem("loggedin-user", loggedin_user);
+            not_found = false;
+            
+            loggedin_user = user[i].uuid;
 
-                if(user[i].cart == undefined) user[i].cart = [];
-                user[i].cart = sync_carts(user[i].cart, cart);
+            user[i].cart = sync_carts(user[i].cart, cart);
 
-                let temp = {};
-                for(let key in user[i])
-                {
-                    temp[key] = user[i][key];
-                }
-
-                update_user(user[i].id, temp)
-                .catch(error =>
-                {
-                    console.error(error);
-                })
-
-                cart = user[i].cart
-                localStorage.setItem("cart", JSON.stringify(cart));
-
+            update_user(user[i])
+            .then(response => {
+                localStorage.setItem("loggedin-user", JSON.stringify(loggedin_user));
+                localStorage.setItem("cart", JSON.stringify(user[i].cart));
                 document.querySelector("#wrong-credentials").style.display = "none";
+                window.location.href = "./index.html";
+            })
+            .catch(error => {
+                console.error(error);
+            })
 
-                break;
-            }
+            break;
         }
+    }
 
-        if(not_found)
-        {
-            document.querySelector("#wrong-credentials").style.display = "block";
-        }
-        else
-        {
-            // alert("Successfully logged in");
-            window.location.href = "./index.html";
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    })
+    if(not_found)
+    {
+        document.querySelector("#wrong-credentials").style.display = "block";
+        document.querySelector("form input:last-child").setAttribute("value", "SIGN IN");
+    }
 })
 
 document.querySelector("#pass-show").addEventListener("click", event =>
