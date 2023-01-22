@@ -1,0 +1,92 @@
+* {
+    /* border: 1px solid black; */
+}
+
+
+#main {
+    width: 70%;
+    margin: auto;
+    margin-top: 5em;
+    margin-bottom: 4em;
+}
+
+#main > h1 {
+    font-size: 1.5rem;
+}
+
+#main > h1:first-child {
+    margin-bottom: 0.5em;
+}
+
+#main > h1:nth-child(2) {
+    margin-bottom: 3em;
+}
+
+#main > h1 > span{
+    font-style: italic;
+    font-size: 2rem;
+    margin-left: 1em;
+}
+
+form {
+    margin-bottom: 1em;
+}
+
+form input {
+    font-size: 1.5rem;
+    padding: 0.5em;
+}
+
+form input[type=submit] {
+    background-color: #008fdb;
+    cursor: pointer;
+    margin-left: 0.5em;
+}
+
+@media screen and (max-width: 675px) {
+    form input[type=submit] {
+        margin-top: 0.5em;
+        margin-left: 0em;
+        margin-bottom: 1.5em;
+    }
+
+    #main > form:nth-child(5) input[type=submit] {
+        margin-bottom: 0em;
+    }
+}
+
+form input[type=submit]:hover {
+    background-color: #03a7ff;
+}
+
+.otp-input {
+    display: none;
+}
+
+#pass-rules {
+    font-size: 0.9rem;
+    margin-top: 1em;
+}
+
+#pass-rules p {
+    margin-bottom: 0.5em;
+}
+
+#delete-user {
+    margin-top: 5em;
+    font-size: 1.1rem;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    background-color: rgb(139, 2, 2);
+}
+
+#delete-user:hover {
+    background-color: rgb(190, 4, 4);
+}
+
+form input[type=submit], #delete-user {
+    color: white;
+    font-weight: 600;
+    border-width: 0px;
+    border-radius: 0.2em;
+}
