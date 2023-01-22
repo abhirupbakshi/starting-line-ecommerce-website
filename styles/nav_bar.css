@@ -169,8 +169,6 @@
     width: 100%;
     position: absolute;
     z-index: 1;
-    /* background-color: white; */
-    /* box-shadow: 0px 5px 4px 0.5px rgb(201, 200, 200); */
     border-bottom: 1px solid #666666;
     box-sizing: border-box;
     padding: 1em 15% 2em 15%;
