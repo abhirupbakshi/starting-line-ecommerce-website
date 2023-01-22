@@ -6,6 +6,7 @@ function show_cart(cart, products)
 {
     document.querySelector("#cart-list").innerHTML = "";
 
+    let total = 0;
     cart.forEach(element => {
         for(let i = 0; i < products.length; i++)
         {
@@ -26,6 +27,11 @@ function show_cart(cart, products)
                 _parent.append(child);
                 child.setAttribute("class", "name");
                 child.innerText = products[i].name;
+
+                child = document.createElement("h3");
+                _parent.append(child);
+                child.setAttribute("class", "price");
+                child.innerText = "$" + products[i].price;
 
                 child = document.createElement("form");
                 _parent.append(child);
@@ -54,8 +60,12 @@ function show_cart(cart, products)
                 child.setAttribute("class", "cart-item-uuid");
                 child.innerText = element.uuid;
                 child.style.display = "none";
+
+                total += products[i].price * element.quantity;
             }
         }
+
+        document.querySelector("#total").innerText = "$" + total;
     });
 }
 
