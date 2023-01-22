@@ -4,11 +4,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./styles/user_account.css">
         <link rel="stylesheet" href="./styles/common.css">
         <link rel="stylesheet" href="./styles/nav_bar.css">
+        <link rel="stylesheet" href="./styles/guest_order.css">
         <link rel="stylesheet" href="./styles/footer.css">
-        <title>User Account</title>
+        <title></title>
     </head>
     <body>
         <div id="nav-bar">
@@ -33,7 +33,7 @@
                     <a href="./product_list.html?gender=men">MEN</a>
                     <a href="./product_list.html?gender=boys">BOYS</a>
                     <a href="./product_list.html?gender=girls">GIRLS</a>
-                    <a href="./product_list.html" class="show-all-product">SEE ALL PRODUCTS</a>
+                    <a href="./product_list.html">SEE ALL PRODUCTS</a>
                 </div>
                 <div id="hidden-div">
                     <div id="shoe"></div>
@@ -43,32 +43,9 @@
             </div>
             
         </div>
-        <div id="main">
-            <h1>Logged in as: <span id="user-name"></span></h1>
-            <h1>Your Email: <span id="user-email"></span></h1>
-            <form class="change-name change-entry">
-                <input type="text" placeholder="Change Name">
-                <input type="submit">
-            </form>
-            <form class="change-email change-entry">
-                <input type="email" placeholder="Change Email">
-                <input type="submit">
-            </form>
-            <form class="change-pass change-entry">
-                <input type="password" maxlength="25" placeholder="Change Password">
-                <input type="text" placeholder="OTP" class="otp-input">
-                <input type="submit">
-                <div id="pass-rules">
-                    <p>Your password must contain:</p>
-                    <p>* 10-25 characters</p>
-                    <p>* At least 1 number</p>
-                    <p>* At least 1 uppercase letter</p>
-                    <p>* At least 1 lowercase letter</p>
-                    <p>* At least 1 special letter</p>
-                </div>
-            </form>
-            <button id="delete-user">Delete Account</button>
-        </div>
+        <h1>Your Cart Total: <span id="total"></span></h1>
+        <button id="buy">Buy Now</button>
+        <div id="cart-list"></div>
         <div id="footer">
             <section class="sec1">
                 <div class="footer-card">
@@ -123,5 +100,5 @@
         </div>
     </body>
     <script src="./scripts/nav_bar.js" type="module"></script>
-    <script src="./scripts/user_account.js" type="module"></script>
+    <script src="./scripts/guest_order.js" type="module"></script>
 </html>

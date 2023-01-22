@@ -1,3 +1,9 @@
+@media screen and (max-width: 840px) {
+    body > *:not(#nav-bar) {
+        width: 90%;
+    }   
+}
+
 body > section:nth-child(2) {
     width: 70%;
     margin: auto;
@@ -53,9 +59,22 @@ body > section:nth-child(5) {
     margin-bottom: 5em;
 }
 
+@media screen and (max-width: 780px) {
+    body > section:nth-child(5)  {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
 body > section:nth-child(5) > div {
     flex: 1;
     margin-right: 0.8em;
+}
+
+@media screen and (max-width: 780px) {
+    body > section:nth-child(5) > div {
+        margin-bottom: 1.5em;
+    }
 }
 
 body > section:nth-child(5) > div:last-child {
@@ -67,6 +86,12 @@ body > section:nth-child(5) img {
     display: block;
     margin-bottom: 0.2em;
     cursor: pointer;
+}
+
+@media screen and (max-width: 780px) {
+    body > section:nth-child(5) img {
+        margin-bottom: 0.5em;
+    }
 }
 
 body > section:nth-child(5) a {
@@ -111,8 +136,29 @@ body > section:nth-child(5) a {
     margin-bottom: 2em;
 }
 
+@media screen and (max-width: 530px) {
+    #last-sec {
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
 #last-sec > div {
     margin-right: 3em;
+}
+
+@media screen and (max-width: 530px) {
+    #last-sec > div {
+        margin-top: 2.5em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid #666666;
+        text-align: center;
+        width: 100%;
+    }
+
+    #last-sec > div:first-child {
+        margin-top: 0em;
+    }
 }
 
 #last-sec > div:last-child {

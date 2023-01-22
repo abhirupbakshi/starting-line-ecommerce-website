@@ -1,0 +1,129 @@
+#footer {
+    width: 70%;
+    margin: auto;
+    border-top: 1px solid #666666;
+    padding-top: 1em;
+    margin-top: 5em;
+    padding-bottom: 4em;
+}
+
+@media screen and (max-width: 875px) {
+    #footer {
+        width: 90%;
+    }
+}
+
+#footer .sec1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, max(200px, 24%));
+    justify-content: space-between;
+    row-gap: 1em;
+    border-bottom: 1px solid rgb(202, 202, 202);
+    padding-bottom: 2em;
+    margin-bottom: 4em;
+}
+
+@media screen and (max-width: 680px) {
+    #footer .sec1 {
+        justify-content: space-around;
+    }
+}
+
+#footer .footer-card > *{
+    padding: 0.5em;
+}
+
+#footer .footer-card div {
+    height: 160px;
+    background-color: #333333;
+    color: white;
+    margin-bottom: 3em;
+    padding: 2em;
+    cursor: pointer;
+}
+
+#footer .footer-card div:hover {
+    background-color: black;
+}
+
+#footer .footer-card div h3 {
+    margin-bottom: 0.8em;
+}
+
+#footer .footer-card > h3, #footer .footer-card > p {
+    font-size: 1rem;
+}
+
+#footer .footer-card > a {
+    font-size: 0.9rem;
+    color: black;
+}
+
+#footer .footer-card > a + h3 {
+    margin-top: 1em;
+}
+
+#footer .footer-card > input {
+    box-sizing: border-box;
+    padding: 0.5em;
+    font-size: 1.1rem;
+    width: 100%;
+}
+
+#footer .sec2 {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+@media screen and (max-width: 1500px) {
+    #footer .sec2 {
+        display: block;
+    }
+}
+
+#footer .sec2 div {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 1500px) {
+    #footer .sec2 div {
+        width: fit-content;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    #footer .sec2 div {
+        flex-direction: column;
+    }
+}
+
+#footer .sec2 div * {
+    margin-right: 0.5em;
+    color: black;
+}
+
+@media screen and (max-width: 1150px) {
+    #footer .sec2 div * {
+        margin-bottom: 0.5em;
+    }
+}
+
+#footer .sec2 div *:last-child {
+    margin-right: 0em;
+}
+
+#footer .sec2 img {
+    width: 250px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1500px) {
+    #footer .sec2 img {
+        display: block;
+        margin: auto;
+        margin-top: 0.8em;
+    }
+}

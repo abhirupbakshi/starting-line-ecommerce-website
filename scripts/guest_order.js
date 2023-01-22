@@ -1,5 +1,4 @@
 import { get_product } from "./modules/products.js"
-import { get_user, update_user } from "./modules/users.js"
 
 function show_cart(cart, products)
 {
@@ -68,90 +67,59 @@ function show_cart(cart, products)
     });
 }
 
-let loggedin_user = JSON.parse(localStorage.getItem("loggedin-user"));
-
-if(loggedin_user == null) 
-{
-    document.body.style.display = "none";
-    console.error("Not logged in");
-    window.location.href = "./index.html";
-}
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 get_product()
-.then(products =>
-{
-    get_user(loggedin_user)
-    .then(user =>
+.then(products => {
+    show_cart(cart, products);
+
+    document.querySelector("#cart-list").addEventListener("click", event =>
     {
-        show_cart(user.cart, products);
+        if(event.target.getAttribute("class") != "delete-btn") return;
+
+        event.target.innerText = "Deleting..."
+
+        let temp = [];
+        for(let i = 0; i < cart.length; i++)
+        {
+            if(cart[i].uuid != event.target.parentElement.querySelector(".cart-item-uuid").innerText)
+            {
+                temp.push(cart[i]);
+            }
+        }
+        cart = temp;
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        show_cart(cart, products);
+    })
+
+    document.querySelector("#cart-list").addEventListener("submit", event =>
+    {
+        event.preventDefault();
         
-        document.querySelector("#cart-list").addEventListener("click", event =>
+        if(event.target.getAttribute("class") != "quantity-form") return;
+
+        event.target.parentElement.querySelector(".submit-quantity").setAttribute("value", "Updating...");
+
+        for(let i = 0; i < cart.length; i++)
         {
-            if(event.target.getAttribute("class") != "delete-btn") return;
-
-            event.target.innerText = "Deleting..."
-
-            let temp = [];
-            for(let i = 0; i < user.cart.length; i++)
+            if(cart[i].uuid == event.target.parentElement.querySelector(".cart-item-uuid").innerText)
             {
-                if(user.cart[i].uuid != event.target.parentElement.querySelector(".cart-item-uuid").innerText)
-                {
-                    temp.push(user.cart[i]);
-                }
+                cart[i].quantity = event.target.parentElement.querySelector(".quantity").value;
+                break;
             }
-            user.cart = temp;
-            
-            update_user(user)
-            .then(data =>
-            {
-                localStorage.setItem("cart", JSON.stringify(user.cart));
-                show_cart(user.cart, products);
-            })
-            .catch(error => {
-                console.error(error);
-                alert("Cannot Delete");
-                event.target.innerText = "Delete"
-            })
-        })
-
-        document.querySelector("#cart-list").addEventListener("submit", event =>
-        {
-            event.preventDefault();
-            
-            if(event.target.getAttribute("class") != "quantity-form") return;
-
-            event.target.parentElement.querySelector(".submit-quantity").setAttribute("value", "Updating...");
-
-            for(let i = 0; i < user.cart.length; i++)
-            {
-                if(user.cart[i].uuid == event.target.parentElement.querySelector(".cart-item-uuid").innerText)
-                {
-                    user.cart[i].quantity = event.target.parentElement.querySelector(".quantity").value;
-                    break;
-                }
-            }
-            
-            update_user(user)
-            .then(data =>
-            {
-                localStorage.setItem("cart", JSON.stringify(user.cart));
-                show_cart(user.cart, products);
-            })
-            .catch(error => {
-                console.error(error);
-                alert("Cannot Update");
-                event.target.parentElement.querySelector(".submit-quantity").setAttribute("value", "Update Quantity");
-            })
-        })
+        }
+        
+        localStorage.setItem("cart", JSON.stringify(cart));
+        event.target.parentElement.querySelector(".submit-quantity").setAttribute("value", "Updated!");
+        setTimeout(() => {
+            show_cart(cart, products);
+        }, 500)
+        
     })
-    .catch(error =>
-    {
-        console.error(error);
-    })
+
 })
-.catch(error =>
-{
+.catch(error => {
     console.error(error);
 })
-
 

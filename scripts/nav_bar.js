@@ -136,7 +136,7 @@ else
     let child = document.createElement("a");
     document.querySelector("#hidden-account-search-div").append(child);
     child.innerText = "See to Your orders";
-    child.setAttribute("href", "./user_order.html");
+    child.setAttribute("href", "./guest_order.html");
 
     child = document.createElement("a");
     document.querySelector("#hidden-account-search-div").append(child);
