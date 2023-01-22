@@ -123,10 +123,10 @@ document.querySelector("form").addEventListener("submit", event =>
 {
     event.preventDefault();
 
-    document.querySelector("form input:last-child").setAttribute("value", "SIGNING UP...")
-
     if(pass_validity)
     {
+        document.querySelector("form input:last-child").setAttribute("value", "SIGNING UP...")
+
         let user = {
             name: document.querySelector("#name").value,
             email: document.querySelector("#email").value,
@@ -159,6 +159,10 @@ document.querySelector("form").addEventListener("submit", event =>
                 return;
             }
         })
+    }
+    else
+    {
+        alert("Please follow the password rules");
     }
 })
 
