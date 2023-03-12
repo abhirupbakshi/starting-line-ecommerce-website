@@ -5,7 +5,12 @@ Finish Line, Inc. is an American retail chain that sells athletic shoes and rela
 
 A [finishline.com](https:www.finishline.com) clone for MasaiSchool's CW project
 
-Each product contents:
+# Tech Stack Used:
+* HTML
+* CSS
+* Java Script
+
+# Each product contents:
 
 * id: "ID of the product"
 * img: "Image of the Product"
@@ -20,7 +25,7 @@ Each product contents:
 * description: "some description"
 * review: [{user id: "review"}, {user id: "review"}, ...]
 
-Each user contents:
+# Each user contents:
 
 * id: "User ID"
 * email: "Email of the user"
