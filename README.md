@@ -38,3 +38,11 @@ API Documentation:
 
 * base_url/ : Returns all the products
 * base_url?gender="gender name"&type="product.type[0], product.type[1]" ...etc: Query Parameters, only for genders, types,  brands or single products(identified by ids)
+
+## Security: 
+The website uses encryption and secure connections to protect the user's personal and payment information. It also implements standard security measures to protect against data breaches and unauthorized access.
+
+## Support: 
+The website provides a contact page with an email address and a phone number where users can reach out to the website's support team with any questions or issues. The website also includes a FAQ page and a knowledgebase where users can find answers to common questions.
+
+Overall, this website provides a comprehensive e-commerce platform that is easy to use, well-designed, and secure. It provides all the necessary features for an e-commerce website and it is designed to provide a great user experience for the customers.
