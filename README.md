@@ -3,6 +3,8 @@
 # Finish Line
 Finish Line, Inc. is an American retail chain that sells athletic shoes and related apparel and accessories owned by JD Sports. The company operates 660 stores in 47 states and Puerto Rico, mostly in shopping malls, as well as Finish Line-branded athletic shoe departments in more than 450 Macy's stores. On June 18, 2018, the company was acquired by multinational retailer JD Sports after the completion of its merger at a price of $13.50 per share in cash.
 
+[Deployed Link](https://stirring-griffin-705e95.netlify.app/)
+
 A [finishline.com](https:www.finishline.com) clone for MasaiSchool's CW project
 
 # Tech Stack Used:
